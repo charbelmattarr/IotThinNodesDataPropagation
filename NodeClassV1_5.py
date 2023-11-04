@@ -278,7 +278,10 @@ class NodeClass:
       print("Node: {port: " + str(self.ports) + ", Neighbors: " + str(self.neighbors) + ", CurrentData: " + str(
               self.messageRCVD) + "}", flush=True)
 
-
+  def ListToStringDropped(self):
+      if len(self.messagesDropped) !=0:
+        print("Node: {port: " + str(self.ports) + ", Neighbors: " + str(self.neighbors) + ", CurrentData: " + str(
+          self.messagesDropped) + "}", flush=True)
   def checkMessagesBroadcast(self, stop_event,i,msg):
     while not stop_event:
           if (len(self.messagesBroadcastReceived) >= (NetworkConfig.num_nodes * 2) / 3):

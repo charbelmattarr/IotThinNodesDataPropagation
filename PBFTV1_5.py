@@ -90,6 +90,14 @@ def printTheValuesNeeded():
 
     print("]", flush=True)
 
+    print("Messages Dropped:", flush=True)
+
+    print("nodes : [", flush=True)
+    for node in NetworkConfig.network.nodes:
+        node.ListToStringDropped()
+
+    print("]", flush=True)
+
     print("The Number Of Messages Dropped in bits is: " + str(NetworkConfig.BitsNumberOfMessagesDropped), flush=True)
     print("The Number Of Messages in bits is: " + str(NetworkConfig.TotalBitsNumberOfMessages), flush=True)
 
@@ -102,7 +110,7 @@ def printTheValuesNeeded():
 
     print(f"Convergence time: {convergence_time} seconds", flush=True)
 
-def addNoise(msg,noise,mean):
+def addNoise(msg,noise):
         noisy_msg = ""
         for c in msg:
             if random.random() < noise:
@@ -133,7 +141,7 @@ def CheckConsensus(message):
         if (msgNumber[i + NetworkConfig.num_nodes ] == 0):
             thread = threading.Thread(target=node.checkMessagesBroadcast, args=(stop_event,i + 1 + NetworkConfig.num_nodes,"Prepare"))
         else:
-            msg = addNoise("Prepare", 0.1, 0)
+            msg = addNoise("Prepare", 0.1)
             thread = threading.Thread(target=node.checkMessagesBroadcast,args=(stop_event, i + 1 + NetworkConfig.num_nodes, "Prepare"))
             print("msg after noise " + str(msg))
         thread.daemon = True

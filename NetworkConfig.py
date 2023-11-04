@@ -11,7 +11,7 @@ SemaphoreTuple = namedtuple('Semaphore', ['Semaphore', 'Nodes'])
 
 num_nodes = 8
 dropMessagesWhenQIsFull = True
-maxQueueCapacity = 5
+maxQueueCapacity = 6
 semaphoreMaxValue = 28
 BitsNumberOfMessagesDropped = 0
 NumberOfMessagesDropped = 0
